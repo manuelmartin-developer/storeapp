@@ -1,6 +1,6 @@
 //  Imports
 import './App.css';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function App() {
 
@@ -12,6 +12,10 @@ function App() {
     .then(res => res.text())
     .then(res => setApiResponse({apiResponse:res}))
   }
+
+useEffect(() => {
+  callAPI();
+})
 
   return (
     <>
