@@ -1,26 +1,31 @@
 //  Imports
-import './App.css';
-import { useState, useEffect } from 'react'
+import '../src/styles/styles.scss';
+import React, {useState} from 'react'
+import { BrowserRouter } from 'react-router-dom';
 
-function App() {
+import Footer from '../src/components/Footer';
+import Header from '../src/components/Header';
+import Main from '../src/components/Main';
 
-  const [apiResponse, setApiResponse] = useState('');
+import { productsContext } from './contexts/productsContext'
 
-  const callAPI = () => {
+const App = () => {
 
-    fetch('http://localhost:9000/')
-    .then(res => res.text())
-    .then(res => setApiResponse({apiResponse:res}))
-  }
+  const [products, setProducts] = useState([]);
 
-useEffect(() => {
-  callAPI();
-})
+  const utils = {
+    products: products,
+    setProducts: setProducts
+  };
 
   return (
-    <>
-    <p>{apiResponse}</p>
-    </>
+    <BrowserRouter>
+      <productsContext.Provider value={utils}>
+        <Header />
+        <Main />
+        <Footer />
+      </productsContext.Provider>
+    </BrowserRouter>
   );
 }
 
