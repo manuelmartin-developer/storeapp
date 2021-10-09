@@ -1,0 +1,12 @@
+// Imports
+
+@import '../components/Header/Header.scss';
+@import '../components/Footer/Footer.scss';
+
+
+
+// Fonts
+@font-face {
+    font-family: 'hello';
+    src: local('hello'), url(../fonts/hello-world.ttf) format('truetype');
+  }
