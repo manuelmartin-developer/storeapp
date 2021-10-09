@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // EndPoints
 app.use('/products', api_products);
-// app.use('/users', api_users);
+app.use('/users', api_users);
 
 // Server
 app.listen(port, () => {
