@@ -8,3 +8,6 @@ const products = require('../controllers/products')
 /******* PRODUCTS *******/
 router
     .get('/', products.getAllProducts);
+
+
+    module.exports = router;
