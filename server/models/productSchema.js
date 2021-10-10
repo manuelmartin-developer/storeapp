@@ -14,7 +14,8 @@ const productSchema = new mongoose.Schema({
         required: true
     },
     rating: {
-        type: Array
+        type: Number,
+        required: true
     },
     price: {
         type: Number,

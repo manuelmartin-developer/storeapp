@@ -36,11 +36,7 @@ const Home = () => {
 
       return (
         <section className="productlist">
-          <table>
-            <tbody>
               <TableProducts />
-            </tbody>
-          </table>
         </section>
       );
     }
@@ -62,11 +58,7 @@ const Home = () => {
             <NewProduct />
           </section>
         <section className="productlist-admin">
-          <table>
-            <tbody>
               <TableProductsAdmin />
-            </tbody>
-          </table>
         </section>
         </section>
       );

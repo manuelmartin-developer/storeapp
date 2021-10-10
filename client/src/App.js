@@ -5,7 +5,7 @@ import React, {
   useEffect
 } from 'react'
 import {
-  BrowserRouter
+  BrowserRouter, Route
 } from 'react-router-dom';
 import jwt_decode from "jwt-decode";
 
@@ -25,6 +25,7 @@ import {
 import {
   adminContext
 } from './contexts/adminContext'
+import { QueryParamProvider } from 'use-query-params';
 
 const App = () => {
 
@@ -72,7 +73,9 @@ const App = () => {
       <cartContext.Provider value={cartData}>
       <productsContext.Provider value={productsData}>
         <Header />
-        <Main />
+        <QueryParamProvider ReactRouterRoute={Route}>
+          <Main />
+        </QueryParamProvider>
         <Footer />
       </productsContext.Provider>
       </cartContext.Provider>
