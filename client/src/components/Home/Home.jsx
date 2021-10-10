@@ -3,9 +3,13 @@ import TableProducts from "../TableProducts";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
 import { productsContext } from "../../contexts/productsContext";
+import { userContext } from "../../contexts/userContext";
+import { adminContext } from "../../contexts/adminContext";
 
 const Home = () => {
   const { products, setProducts } = useContext(productsContext);
+  const { userLogged } = useContext(userContext);
+  const { isAdmin } = useContext(adminContext);
 
   useEffect(() => {
     (async () => {
@@ -26,15 +30,42 @@ const Home = () => {
       </section>
     );
   } else {
-    return (
-      <section className="productlist">
-        <table>
-          <tbody>
-            <TableProducts />
-          </tbody>
-        </table>
-      </section>
-    );
+    if(!userLogged){
+
+      return (
+        <section className="productlist">
+          <table>
+            <tbody>
+              <TableProducts />
+            </tbody>
+          </table>
+        </section>
+      );
+    }
+    if(userLogged && !isAdmin){
+      return (
+        <section className="productlist">
+          <table>
+            <tbody>
+              Aquí tabla de productos con botón agregar carrito
+              <TableProducts />
+            </tbody>
+          </table>
+        </section>
+      );
+    }
+    if(userLogged && isAdmin){
+      return (
+        <section className="productlist">
+          <table>
+            <tbody>
+              Aquí formulario para agregar productos
+              <TableProducts />
+            </tbody>
+          </table>
+        </section>
+      );
+    }
   }
 };
 

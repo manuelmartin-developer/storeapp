@@ -10,6 +10,7 @@ import Login from '../Login';
 import Signup from '../Signup';
 import Recover from '../Recover';
 import Reset from '../Reset';
+import Logout from "../Logout/Logout";
 
 
 const Main = () => {
@@ -19,6 +20,7 @@ const Main = () => {
         <Route path="/" component={Home} exact />
         <Route path="/product/:id" component={Details} exact />
         <Route path="/login" component={Login} exact />
+        <Route path="/logout" component={Logout} exact />
         <Route path="/signup" component={Signup} exact />
         <Route path="/cart" component={Cart} exact />
         <Route path="/recover" component={Recover} exact />

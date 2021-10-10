@@ -1,30 +1,50 @@
 import React from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { Toast } from "../../hooks/useToast";
 
 const Signup = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data, e) => {
-    if (data) {
-      const payload = { 
-        name: data.name,
-        surname: data.surname,
-        email: data.email,
-        password: data.password,
-        address: data.address 
-      };
+    const payload = {
+      name: data.name,
+      surname: data.surname,
+      email: data.email,
+      password: data.password,
+      address: data.address,
+    };
 
-      (async () => {
+    const options = {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
+
+    console.log("");
+    (async () => {
+      try {
         const response = await axios.post(
           "http://localhost:9000/users/signup",
-          payload
+          payload,
+          options
         );
-        console.log(response);
-      })();
-    }
-  };
 
+        if (response.status === 201) {
+          Toast.fire({
+            icon: "success",
+            title: "Now you can login",
+          });
+        }
+      } catch (error) {
+        Toast.fire({
+          icon: "error",
+          title: "This email is already in our DB",
+        });
+      }
+    })();
+  };
   return (
     <section className="signup">
       <form
@@ -48,7 +68,9 @@ const Signup = () => {
           type="email"
           placeholder="email"
           name="email"
-          {...register("email", { required: "You must specify a correct email" })}
+          {...register("email", {
+            required: "You must specify a correct email",
+          })}
         />
         <input
           type="password"
