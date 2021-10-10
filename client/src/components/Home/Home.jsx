@@ -1,11 +1,13 @@
 import React, { useEffect, useContext } from "react";
 import TableProducts from "../TableProducts";
+import TableProductsUser from "../TableProductsUser";
+import TableProductsAdmin from "../TableProductsAdmin";
+import NewProduct from "../NewProduct";
 import axios from "axios";
 import { Spinner } from "react-bootstrap";
 import { productsContext } from "../../contexts/productsContext";
 import { userContext } from "../../contexts/userContext";
 import { adminContext } from "../../contexts/adminContext";
-
 const Home = () => {
   const { products, setProducts } = useContext(productsContext);
   const { userLogged } = useContext(userContext);
@@ -47,8 +49,7 @@ const Home = () => {
         <section className="productlist">
           <table>
             <tbody>
-              Aquí tabla de productos con botón agregar carrito
-              <TableProducts />
+              <TableProductsUser />
             </tbody>
           </table>
         </section>
@@ -57,12 +58,16 @@ const Home = () => {
     if(userLogged && isAdmin){
       return (
         <section className="productlist">
+          <section className="productlist-new">
+            <NewProduct />
+          </section>
+        <section className="productlist-admin">
           <table>
             <tbody>
-              Aquí formulario para agregar productos
-              <TableProducts />
+              <TableProductsAdmin />
             </tbody>
           </table>
+        </section>
         </section>
       );
     }

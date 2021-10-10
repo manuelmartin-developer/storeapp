@@ -21,12 +21,6 @@ const Header = () => {
             <p>Logout</p>
           </Link>
         </div>
-        <div className="header-cart">
-          <Link to="/cart" className="header-link">
-            <BsMinecartLoaded />
-            <span className="header-cart-quanty"> {cart.length} </span>
-          </Link>
-        </div>
       </header>
     );
   }
@@ -59,12 +53,6 @@ const Header = () => {
         <Link to="/login" className="header-link">
           <p>login</p>
         </Link>
-        <div className="header-cart">
-          <Link to="/cart" className="header-link">
-            <BsMinecartLoaded />
-            <span className="header-cart-quanty"> {cart.length} </span>
-          </Link>
-        </div>
       </header>
     );
   }
