@@ -1,13 +1,14 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { productsContext } from "../../contexts/productsContext";
+import useDebounce from "../../hooks/useDebounce";
 import Paginator from "react-hooks-paginator";
 import StarRatings from "react-star-ratings";
 import { BsArrowUpShort, BsArrowDownShort } from "react-icons/bs";
 
 const TableProducts = () => {
   // Context
-  const { products, setProducts } = useContext(productsContext);
+  const { products } = useContext(productsContext);
 
   // Pagination
   const pageLimit = 10;
@@ -78,83 +79,109 @@ const TableProducts = () => {
     }
   }, [sortingRating, products, offset]);
 
+  // Search
+  const [input, setInput] = useState("");
+  const inputSearch = useRef(null);
+  const debouncedSearchTerm = useDebounce(input, 200);
+
+  const handleChange = (event) => {
+    setInput(event.target.value);
+  };
+
+  useEffect(() => {
+    if (input) {
+      const filterProducts = products.filter(product => product.title.toLowerCase().includes(input.toLocaleLowerCase()) || product.manufacturer.name.toLocaleLowerCase().includes(input.toLocaleLowerCase()));
+      setCurrentData(filterProducts.slice(offset, offset + pageLimit));
+    }
+  }, [debouncedSearchTerm, input, offset, products]);
+
   return (
     <>
       <table>
         <thead>
-          <th><input type="text" name="search" placeholder="Search by name or manufacturer..." autoComplete="off"/></th>
-          <th>
-            Product{" "}
-            <button
-              onClick={
-                sortingProduct === ""
-                  ? () => {
-                      setSortingProducts("productsDesc");
-                    }
-                  : sortingProduct === "productsDesc"
-                  ? () => {
-                      setSortingProducts("productsAsc");
-                    }
-                  : () => {
-                      setSortingProducts("productsDesc");
-                    }
-              }
-            >
-              {sortingProduct === "" || sortingProduct === "productsAsc" ? (
-                <BsArrowUpShort />
-              ) : (
-                <BsArrowDownShort />
-              )}
-            </button>
-          </th>
-          <th>
-            Price{" "}
-            <button
-              onClick={
-                sortingPrice === ""
-                  ? () => {
-                      setSortingPrice("priceDesc");
-                    }
-                  : sortingPrice === "priceDesc"
-                  ? () => {
-                      setSortingPrice("priceAsc");
-                    }
-                  : () => {
-                      setSortingPrice("priceDesc");
-                    }
-              }
-            >
-              {sortingPrice === "" || sortingPrice === "priceAsc" ? (
-                <BsArrowUpShort />
-              ) : (
-                <BsArrowDownShort />
-              )}
-            </button>
-          </th>
-          <th>
-            Rating{" "}
-            <button
-              onClick={
-                sortingRating === ""
-                  ? () => {
-                      setSortingRating("ratingDesc");
-                    }
-                  : sortingRating=== "ratingDesc"
-                  ? () => {
-                      setSortingRating("ratingAsc");
-                    }
-                  : () => {
-                      setSortingRating("ratingDesc");
-                    }
-              }
-            >
-              {sortingRating === "" || sortingRating === "ratingAsc" ? (
-                <BsArrowUpShort />
-              ) : (
-                <BsArrowDownShort />
-              )}
-            </button>
-          </th>
+          <tr>
+            <th>
+              <input
+                type="text"
+                placeholder="Search by name or manufacturer..."
+                autoComplete="off"
+                ref={inputSearch}
+                onChange={handleChange}
+              />
+            </th>
+            <th>
+              Product{" "}
+              <button
+                onClick={
+                  sortingProduct === ""
+                    ? () => {
+                        setSortingProducts("productsDesc");
+                      }
+                    : sortingProduct === "productsDesc"
+                    ? () => {
+                        setSortingProducts("productsAsc");
+                      }
+                    : () => {
+                        setSortingProducts("productsDesc");
+                      }
+                }
+              >
+                {sortingProduct === "" || sortingProduct === "productsAsc" ? (
+                  <BsArrowDownShort />
+                ) : (
+                  <BsArrowUpShort />
+                )}
+              </button>
+            </th>
+            <th>
+              Price{" "}
+              <button
+                onClick={
+                  sortingPrice === ""
+                    ? () => {
+                        setSortingPrice("priceDesc");
+                      }
+                    : sortingPrice === "priceDesc"
+                    ? () => {
+                        setSortingPrice("priceAsc");
+                      }
+                    : () => {
+                        setSortingPrice("priceDesc");
+                      }
+                }
+              >
+                {sortingPrice === "" || sortingPrice === "priceAsc" ? (
+                  <BsArrowDownShort />
+                ) : (
+                  <BsArrowUpShort />
+                )}
+              </button>
+            </th>
+            <th>
+              Rating{" "}
+              <button
+                onClick={
+                  sortingRating === ""
+                    ? () => {
+                        setSortingRating("ratingDesc");
+                      }
+                    : sortingRating === "ratingDesc"
+                    ? () => {
+                        setSortingRating("ratingAsc");
+                      }
+                    : () => {
+                        setSortingRating("ratingDesc");
+                      }
+                }
+              >
+                {sortingRating === "" || sortingRating === "ratingAsc" ? (
+                  <BsArrowDownShort />
+                ) : (
+                  <BsArrowUpShort />
+                )}
+              </button>
+            </th>
+          </tr>
         </thead>
         <tbody>
           {currentData.map((data, index) => (
@@ -165,7 +192,7 @@ const TableProducts = () => {
               <td>
                 <Link to={`/product/id?id=${data.id}`}>{data.title}</Link>
               </td>
-              <td>{data.price}</td>
+              <td>{data.price}€</td>
               <td>
                 <StarRatings
                   rating={data.rating}
