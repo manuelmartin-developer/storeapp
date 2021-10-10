@@ -1,6 +1,6 @@
 const { pool, client } = require('../db/usersDB');
 
-//! Crear usuario
+
 const createUser = async (name, surname, email, password, address) => {
 
     try {
@@ -11,7 +11,7 @@ const createUser = async (name, surname, email, password, address) => {
     }
   };
   
-  //! Obtener Usuarios de la base de datos
+
   const getUser = async (email) => {
     try {
       const response = await pool.query('SELECT * FROM users WHERE email=$1', [email])
@@ -20,7 +20,7 @@ const createUser = async (name, surname, email, password, address) => {
       console.log(err.stack)
     }
   }
-  //! Obtener los usuarios
+
   const getAllUsers = async () => {
     try {
       const response = await pool.query('SELECT * FROM users')
@@ -29,25 +29,28 @@ const createUser = async (name, surname, email, password, address) => {
       console.log(err.stack)
     }
   }
-  //! Actualizar un usuario
+
   const updateAnUser = async (newName, newSurname, newEmail, oldEmail, newAddress) => {
     try {
   
       const response = await pool.query('UPDATE users SET name=$1, surname=$2, email=$3, address=$5 WHERE email=$4', [newName, newSurname, newEmail, oldEmail, newAddress]);
       return response.rowCount
     } catch (error) {
-  
+      console.log(err.stack)
+      
     }
-  }//! Actualizar la password de un usuario
+  }
+
   const updatePassword = async (password, email) => {
     try {
       const response = await pool.query('UPDATE users SET password=$1 WHERE email=$2', [password, email]);
       return response.rowCount
     } catch (error) {
-  
+      console.log(err.stack)
+      
     }
   }
-  //! Borrar un usuario
+
   const deleteOneUser = async (email) => {
     try {
       const response = await pool.query('DELETE FROM users WHERE email=$1', [email])

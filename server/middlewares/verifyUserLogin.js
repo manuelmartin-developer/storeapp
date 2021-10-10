@@ -1,17 +1,6 @@
 const crypt = require('bcryptjs')
 const User = require('../models/users')
 
-isEmptyLogin= (req, res, next) => {
-
-    const email = req.body.email;
-    const password = req.body.password;
-
-    if (email === '' || password === '') {
-        res.sendStatus(411);
-        return;
-    }
-    next();
-};
 
 checkEmailAndPassword = (req, res, next) => {
     const user = User.getUser(req.body.email)
@@ -19,7 +8,7 @@ checkEmailAndPassword = (req, res, next) => {
             if (data.length == 0) {
                 return res.sendStatus(400)
             }
-            const passwordIsValid = crypt.compareSync(req.body.password, data[0].password)
+            const passwordIsValid = crypt.compareSync(req.body.password, data[0]['password'])
             if (!passwordIsValid) {
                 return res.sendStatus(401)
             }
@@ -30,7 +19,6 @@ checkEmailAndPassword = (req, res, next) => {
 
 
 const verifyUserLogin = {
-    isEmptyLogin,
     checkEmailAndPassword
 }
 
