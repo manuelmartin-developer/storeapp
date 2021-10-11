@@ -11,6 +11,7 @@ import Signup from '../Signup';
 import Recover from '../Recover';
 import Reset from '../Reset';
 import Logout from "../Logout/Logout";
+import Update from "../Update/Update";
 
 
 const Main = () => {
@@ -19,7 +20,8 @@ const Main = () => {
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/product/:id" component={Details} exact />
-        <Route path="/login" component={Login} exact />
+        <Route path="/update/:id" component={Update} exact />
+        <Route path="/login:token?" component={Login} exact />
         <Route path="/logout" component={Logout} exact />
         <Route path="/signup" component={Signup} exact />
         <Route path="/cart" component={Cart} exact />

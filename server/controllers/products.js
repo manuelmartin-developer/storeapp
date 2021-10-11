@@ -51,6 +51,24 @@ const products = {
             });
         }
     },
+    updateProduct: async (req, res) => {
+        try {
+
+            const product = await req.body;
+            const updateProduct = await Products.findOneAndUpdate({
+                id: product.id
+            }, product);
+            
+            if (updateProduct) {
+                res.sendStatus(200);
+            }
+
+        } catch (error) {
+            res.status(400).json({
+                error: error.message
+            });
+        }
+    },
 
 };
 

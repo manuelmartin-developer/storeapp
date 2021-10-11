@@ -43,11 +43,7 @@ const Home = () => {
     if(userLogged && !isAdmin){
       return (
         <section className="productlist">
-          <table>
-            <tbody>
               <TableProductsUser />
-            </tbody>
-          </table>
         </section>
       );
     }

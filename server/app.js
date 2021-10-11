@@ -5,18 +5,23 @@ const cors = require("cors");
 const cookieParser = require('cookie-parser');
 const api_products = require('./routes/api_products');
 const api_users = require('./routes/api_users');
+const passport = require('passport');
+
 
 // Variables
 const app = express();
 const port = process.env.PORT;
 const corsOptions = {
     origin: [
-      "https://localhost:process.env.PORT"
+      "https://localhost:9000",
+      "https://localhost:3000",
+
     ]
   };
 
 // Middlewares
 app.use(cors(corsOptions));
+app.use(passport.initialize());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

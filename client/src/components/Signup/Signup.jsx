@@ -1,10 +1,13 @@
 import React from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Toast } from "../../hooks/useToast";
 
 const Signup = () => {
   const { register, handleSubmit } = useForm();
+  const history = useHistory();
+
 
   const onSubmit = (data, e) => {
     const payload = {
@@ -32,6 +35,7 @@ const Signup = () => {
         );
 
         if (response.status === 201) {
+        history.push("/login");
           Toast.fire({
             icon: "success",
             title: "Now you can login",

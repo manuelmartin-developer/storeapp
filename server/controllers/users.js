@@ -5,7 +5,7 @@ const {
 
 const generateToken = require('../middlewares/generateToken');
 const bcryptjs = require('bcryptjs');
-// const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 // const sendEmail = require("../utils/sendEmail");
 // const passport = require('passport');
 
@@ -30,12 +30,12 @@ const users = {
     logout: async (req, res) => {
         try {
 
-            const token = req.boy.token;
+            const token = req.body.token;
             jwt.sign(token, "", {
                 expires: 1
             }, (logout, err) => {
                 if (logout) {
-                    res.sendStatus(200)
+                    res.sendStatus(200);
                 } else {
                     res.send({
                         msg: 'Error'

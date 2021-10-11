@@ -1,9 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 import { Toast } from "../../hooks/useToast";
 import axios from "axios";
+import { userContext } from "../../contexts/userContext";
 
 const Logout = () => {
+  
+  const { setUserLogged } = useContext(userContext);
+  const history = useHistory();
+
   const payload = {
     token: sessionStorage.getItem("token"),
   };
@@ -25,12 +31,14 @@ const Logout = () => {
         );
 
         if (response.status === 200) {
+          setUserLogged(false);
+          sessionStorage.clear();
+          history.push("/");
           Toast.fire({
             icon: "success",
             title: "You have been logout",
           });
-          sessionStorage.clear();
-          // window.location.href = "/";
+
         }
       } catch (error) {
         Toast.fire({
@@ -39,8 +47,7 @@ const Logout = () => {
         });
       }
     })();
-    sessionStorage.clear();
-    window.location.href = "/";
+
   });
   return (
     <section className="productlist">

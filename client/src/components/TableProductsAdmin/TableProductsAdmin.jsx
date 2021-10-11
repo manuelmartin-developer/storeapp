@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { productsContext } from "../../contexts/productsContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { Toast } from "../../hooks/useToast";
 import Paginator from "react-hooks-paginator";
 
@@ -79,7 +80,9 @@ const TableProductsAdmin = () => {
                 <td>
                   <img src={data.image} alt={data.title} height="100px" />
                 </td>
-                <td>{data.title}</td>
+                <td>
+                <Link to={`/update/id?id=${data.id}`}>{data.title}</Link>
+              </td>
                 <td>
                   <button
                     onClick={() => {

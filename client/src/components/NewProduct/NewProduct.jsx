@@ -15,47 +15,49 @@ const NewProduct = () => {
 
 
   const onSubmit = (data, e) => {
-    const payload = {
-      title: data.title,
-      image: data.image,
-      rating: data.rating,
-      price: data.price,
-      name: data.name,
-      cif: data.cif,
-      address: data.address,
-    };
-
-    const options = {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    };
-
-
-    (async () => {
-      try {
-        const response = await axios.post(
-          "http://localhost:9000/products/add",
-          payload,
-          options
-        );
-
-        if (response.status === 201) {
+    if(userLogged && isAdmin){
+      const payload = {
+        title: data.title,
+        image: data.image,
+        rating: data.rating,
+        price: data.price,
+        name: data.name,
+        cif: data.cif,
+        address: data.address,
+      };
+  
+      const options = {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      };
+  
+  
+      (async () => {
+        try {
+          const response = await axios.post(
+            "http://localhost:9000/products/add",
+            payload,
+            options
+          );
+  
+          if (response.status === 201) {
+            Toast.fire({
+              icon: "success",
+              title: "Product added to DB",
+            });
+  
+            setProducts([...products, response.data])
+          }
+        } catch (error) {
           Toast.fire({
-            icon: "success",
-            title: "Product added to DB",
+            icon: "error",
+            title: "Something has failed",
           });
-
-          setProducts([...products, response.data])
         }
-      } catch (error) {
-        Toast.fire({
-          icon: "error",
-          title: "Something has failed",
-        });
-      }
-    })();
+      })(); 
+    }
   };
 
   return (
