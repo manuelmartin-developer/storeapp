@@ -112,7 +112,7 @@ const Login = () => {
         <button type="submit">Login...</button>
       </form>
       <Link to="/recover" className="login-recover">
-        <p>Remember password</p>
+        <p>Forgot your password?</p>
       </Link>
 
       <img
@@ -133,7 +133,7 @@ const Login = () => {
       />
 
       <Link to="/signup" className="login-recover">
-        <p>Dont have account? Sign up here</p>
+        <p>Don't have an account? Sign up</p>
       </Link>
     </section>
   );

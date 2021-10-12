@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { productsContext } from "../../contexts/productsContext";
 import useDebounce from "../../hooks/useDebounce";
 import Paginator from "react-hooks-paginator";
-import StarRatings from "react-star-ratings";
+import Rate from 'rc-rate';
+import 'rc-rate/assets/index.css';
 import { BsArrowUpShort, BsArrowDownShort } from "react-icons/bs";
 
 const TableProducts = () => {
@@ -206,13 +207,12 @@ const TableProducts = () => {
               </td>
               <td className="table-tbody-tr-td">{data.price}€</td>
               <td className="table-tbody-tr-td">
-                <StarRatings
-                  rating={data.rating}
-                  numberOfStars={5}
-                  starRatedColor="#ffd700"
-                  starDimension="10px"
-                  starSpacing="2px"
-                />
+              <Rate
+            disabled={true}
+              value={data.rating}
+              style={{ fontSize: 10 }}
+              allowClear={false}
+            />
               </td>
             </tr>
           ))}

@@ -2,7 +2,8 @@ import React, { useContext, useState, useEffect, useRef  } from "react";
 import { productsContext } from "../../contexts/productsContext";
 import useDebounce from "../../hooks/useDebounce";
 import Paginator from "react-hooks-paginator";
-import StarRatings from "react-star-ratings";
+import Rate from 'rc-rate';
+import 'rc-rate/assets/index.css';
 import { Link } from "react-router-dom";
 import { BsArrowUpShort, BsArrowDownShort, BsMinecartLoaded } from "react-icons/bs";
 import { useCart } from "react-use-cart";
@@ -205,13 +206,12 @@ const TableProductsUser = () => {
             </td>
             <td className="table-tbody-tr-td">{data.price}$ </td>
             <td className="table-tbody-tr-td">
-              <StarRatings
-                rating={data.rating}
-                numberOfStars={5}
-                starRatedColor="#ffd700"
-                starDimension="10px"
-                starSpacing="2px"
-              />
+            <Rate
+            disabled={true}
+              value={data.rating}
+              style={{ fontSize: 10 }}
+              allowClear={false}
+            />
             </td>
           </tr>
         ))}
