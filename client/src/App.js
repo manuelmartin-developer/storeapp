@@ -1,35 +1,21 @@
 //  Imports
 import '../src/styles/styles.scss';
-import React, {
-  useState,
-  useEffect
-} from 'react'
-import {
-  BrowserRouter, Route
-} from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { BrowserRouter, Route } from 'react-router-dom';
 import jwt_decode from "jwt-decode";
 
 import Footer from '../src/components/Footer';
 import Header from '../src/components/Header';
 import Main from '../src/components/Main';
 
-import {
-  cartContext
-} from './contexts/cartContext'
-import {
-  productsContext
-} from './contexts/productsContext'
-import {
-  userContext
-} from './contexts/userContext'
-import {
-  adminContext
-} from './contexts/adminContext'
+import { productsContext } from './contexts/productsContext'
+import { userContext } from './contexts/userContext'
+import { adminContext } from './contexts/adminContext'
 import { QueryParamProvider } from 'use-query-params';
+import { CartProvider } from "react-use-cart";
 
 const App = () => {
 
-  const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
   const [userLogged, setUserLogged] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -49,10 +35,7 @@ const App = () => {
     }
   }, []);
 
-  const cartData = {
-    cart: cart,
-    setCart: setCart,
-  };
+
   const productsData = {
     products: products,
     setProducts: setProducts
@@ -70,7 +53,7 @@ const App = () => {
     <BrowserRouter>
       <userContext.Provider value={userData}>
       <adminContext.Provider value={adminData}>
-      <cartContext.Provider value={cartData}>
+    <CartProvider>
       <productsContext.Provider value={productsData}>
         <Header />
         <QueryParamProvider ReactRouterRoute={Route}>
@@ -78,7 +61,7 @@ const App = () => {
         </QueryParamProvider>
         <Footer />
       </productsContext.Provider>
-      </cartContext.Provider>
+    </CartProvider>
       </adminContext.Provider>
       </userContext.Provider>
     </BrowserRouter>

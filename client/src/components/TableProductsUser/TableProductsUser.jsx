@@ -1,25 +1,18 @@
 import React, { useContext, useState, useEffect, useRef  } from "react";
 import { productsContext } from "../../contexts/productsContext";
-import { cartContext } from "../../contexts/cartContext";
 import useDebounce from "../../hooks/useDebounce";
 import Paginator from "react-hooks-paginator";
 import StarRatings from "react-star-ratings";
 import { Link } from "react-router-dom";
 import { BsArrowUpShort, BsArrowDownShort } from "react-icons/bs";
-
+import { useCart } from "react-use-cart";
 const TableProductsUser = () => {
   // Context
   const { products } = useContext(productsContext);
   
 
   // Cart
-  const { cart, setCart } = useContext(cartContext);
-
-
-  const addToCart = (product) => {
-
-  setCart([...cart, product])
-}
+  const { addItem } = useCart();
 
   // Pagination
   const pageLimit = 10;
@@ -213,7 +206,7 @@ const TableProductsUser = () => {
                   starSpacing="15px"
                 />
               </td>
-              <td><button onClick={() => {addToCart(data)}}>Add to Cart</button></td>
+              <td><button onClick={() => {addItem(data)}}>Add to Cart</button></td>
             </tr>
           ))}
         </tbody>

@@ -8,7 +8,7 @@ import { adminContext } from "../../contexts/adminContext";
 
 const NewProduct = () => {
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const { products, setProducts } = useContext(productsContext);
   const { userLogged } = useContext(userContext);
   const { isAdmin } = useContext(adminContext);
@@ -58,11 +58,12 @@ const NewProduct = () => {
         }
       })(); 
     }
+    reset();
   };
 
   return (
-    <>
-    <p>{products.length}</p>
+    <section className="newproduct">
+    <h1>There are {products.length} products in store</h1>
     <form
     className="signup-form"
     onSubmit={handleSubmit(onSubmit)}
@@ -114,7 +115,7 @@ const NewProduct = () => {
     />
     <button type="submit">Add Product</button>
   </form>
-    </>
+    </section>
   );
 };
 

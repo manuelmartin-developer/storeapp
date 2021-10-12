@@ -1,13 +1,8 @@
-const {
-    getUser,
-    createUser
-} = require('../models/users');
-
+const { getUser, createUser, updatePassword } = require('../models/users');
 const generateToken = require('../middlewares/generateToken');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken')
-// const sendEmail = require("../utils/sendEmail");
-// const passport = require('passport');
+const sendEmail = require("../helpers/sendEmail");
 
 const users = {
 
@@ -57,9 +52,52 @@ const users = {
             const address = await req.body.address;
             const newUser = await createUser(name, surname, email, password, address);
             if (newUser) {
-                res.sendStatus(201);
+                res.sendStatus(200);
             }
 
+        } catch (error) {
+            res.status(400).json({
+                error: error.message
+            });
+        }
+    },
+    recoverPass: async (req, res) => {
+        try {
+
+            const email = req.body.email;
+            const user = await getUser(email);
+            const user_id = user[0].user_id
+            if (!user) {
+                return res.sendStatus(400);
+            }
+            const token = jwt.sign({
+                user_id,
+                email
+            }, process.env.JWT_KEY, {
+                expiresIn: '1d'
+            });
+
+            const link = `http://localhost:3000/resetpass?id=${user_id}&token=${token}`;
+            await sendEmail(email, "Password reset", link);
+            res.sendStatus(200)
+
+
+        } catch (error) {
+            res.status(400).json({
+                error: error.message
+            });
+        }
+    },
+    resetPass: async (req, res) => {
+        try {
+            const reqPass = await req.body.pass1;
+            const email = await req.body.email;
+            const password = bcryptjs.hashSync(reqPass, 8);
+
+            const newPassword = await updatePassword(password, email);
+            if (newPassword) {
+                res.sendStatus(200)
+            }
         } catch (error) {
             res.status(400).json({
                 error: error.message

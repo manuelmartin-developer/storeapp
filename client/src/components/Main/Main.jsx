@@ -26,7 +26,7 @@ const Main = () => {
         <Route path="/signup" component={Signup} exact />
         <Route path="/cart" component={Cart} exact />
         <Route path="/recover" component={Recover} exact />
-        <Route path="/reset" component={Reset} exact />
+        <Route path="/reset:id:token" component={Reset} exact />
         <Route component={Error} />
       </Switch>
     </main>

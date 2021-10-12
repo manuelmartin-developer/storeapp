@@ -46,14 +46,16 @@ const TableProductsAdmin = () => {
         );
 
         if (response.status === 202) {
+
+          
           Toast.fire({
             icon: "success",
             title: "Product remove from DB",
           });
-
+          
           setProducts(
             products.filter((current, currentIndex) => currentIndex !== index)
-          );
+            );
         }
       } catch (error) {
         Toast.fire({

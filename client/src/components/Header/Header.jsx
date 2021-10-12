@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
-import { cartContext } from "../../contexts/cartContext";
 import { userContext } from "../../contexts/userContext";
 import { adminContext } from "../../contexts/adminContext";
 import { Link } from "react-router-dom";
 import { BsMinecartLoaded } from "react-icons/bs";
+import { useCart } from "react-use-cart";
 
 const Header = () => {
-  const { cart } = useContext(cartContext);
+
+  const { totalItems } = useCart();
+
   const { userLogged } = useContext(userContext);
   const { isAdmin } = useContext(adminContext);
 
@@ -38,7 +40,7 @@ const Header = () => {
         <div className="header-cart">
           <Link to="/cart" className="header-link">
             <BsMinecartLoaded />
-            <span className="header-cart-quanty"> {cart.length} </span>
+            <span className="header-cart-quanty"> {totalItems} </span>
           </Link>
         </div>
       </header>
