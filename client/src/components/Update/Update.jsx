@@ -65,7 +65,7 @@ const Update = () => {
 
   return (
     <section className="update">
-      <p>Product: {product[0].id}</p>
+      <h1>Product: {product[0].id}</h1>
       <form
         className="update-form"
         onSubmit={handleSubmit(onSubmit)}

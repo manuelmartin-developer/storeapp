@@ -4,7 +4,7 @@ import useDebounce from "../../hooks/useDebounce";
 import Paginator from "react-hooks-paginator";
 import StarRatings from "react-star-ratings";
 import { Link } from "react-router-dom";
-import { BsArrowUpShort, BsArrowDownShort } from "react-icons/bs";
+import { BsArrowUpShort, BsArrowDownShort, BsMinecartLoaded } from "react-icons/bs";
 import { useCart } from "react-use-cart";
 const TableProductsUser = () => {
   // Context
@@ -101,125 +101,131 @@ const TableProductsUser = () => {
 
   return (
     <>
-      <table>
-        <thead>
-          <tr>
-            <th>
-              <input
-                type="text"
-                placeholder="Search by name or manufacturer..."
-                autoComplete="off"
-                ref={inputSearch}
-                onChange={handleChange}
+    <table className="table">
+      <thead className="table-thead">
+        <tr className="table-thead-tr">
+          <th></th>
+          <th className="table-thead-tr-th" scope="col">
+            Product{" "}
+            <button
+            className="table-thead-tr-th-sorting"
+              onClick={
+                sortingProduct === ""
+                  ? () => {
+                      setSortingProducts("productsDesc");
+                    }
+                  : sortingProduct === "productsDesc"
+                  ? () => {
+                      setSortingProducts("productsAsc");
+                    }
+                  : () => {
+                      setSortingProducts("productsDesc");
+                    }
+              }
+            >
+              {sortingProduct === "" || sortingProduct === "productsAsc" ? (
+                <BsArrowDownShort />
+              ) : (
+                <BsArrowUpShort />
+              )}
+            </button>
+          </th>
+          <th className="table-thead-tr-th" scope="col">
+            Price{" "}
+            <button
+            className="table-thead-tr-th-sorting"
+              onClick={
+                sortingPrice === ""
+                  ? () => {
+                      setSortingPrice("priceDesc");
+                    }
+                  : sortingPrice === "priceDesc"
+                  ? () => {
+                      setSortingPrice("priceAsc");
+                    }
+                  : () => {
+                      setSortingPrice("priceDesc");
+                    }
+              }
+            >
+              {sortingPrice === "" || sortingPrice === "priceAsc" ? (
+                <BsArrowDownShort />
+              ) : (
+                <BsArrowUpShort />
+              )}
+            </button>
+          </th>
+          <th className="table-thead-tr-th" scope="col">
+            Rating{" "}
+            <button
+            className="table-thead-tr-th-sorting"
+              onClick={
+                sortingRating === ""
+                  ? () => {
+                      setSortingRating("ratingDesc");
+                    }
+                  : sortingRating === "ratingDesc"
+                  ? () => {
+                      setSortingRating("ratingAsc");
+                    }
+                  : () => {
+                      setSortingRating("ratingDesc");
+                    }
+              }
+            >
+              {sortingRating === "" || sortingRating === "ratingAsc" ? (
+                <BsArrowDownShort />
+              ) : (
+                <BsArrowUpShort />
+              )}
+            </button>
+          </th>
+        </tr>
+        <tr className="table-thead-tr">
+          <th className="table-thead-tr-th-input" colSpan="4">
+            <input
+              type="text"
+              placeholder="Search by name or manufacturer..."
+              autoComplete="off"
+              ref={inputSearch}
+              onChange={handleChange}
+            />
+          </th>
+        </tr>
+      </thead>
+      <tbody className="table-tbody">
+        {currentData.map((data, index) => (
+          <tr key={index} className="table-tbody-tr">
+            <td className="table-tbody-tr-td">
+              <img src={data.image} alt={data.title} className="table-tbody-tr-td-img"/>
+              <button onClick={() => {addItem(data)}}><BsMinecartLoaded /></button>
+            </td>
+            <td className="table-tbody-tr-td">
+              <Link to={`/product/id?id=${data.id}`}>{data.title}</Link>
+            </td>
+            <td className="table-tbody-tr-td">{data.price}$ </td>
+            <td className="table-tbody-tr-td">
+              <StarRatings
+                rating={data.rating}
+                numberOfStars={5}
+                starRatedColor="#ffd700"
+                starDimension="10px"
+                starSpacing="2px"
               />
-            </th>
-            <th>
-              Product{" "}
-              <button
-                onClick={
-                  sortingProduct === ""
-                    ? () => {
-                        setSortingProducts("productsDesc");
-                      }
-                    : sortingProduct === "productsDesc"
-                    ? () => {
-                        setSortingProducts("productsAsc");
-                      }
-                    : () => {
-                        setSortingProducts("productsDesc");
-                      }
-                }
-              >
-                {sortingProduct === "" || sortingProduct === "productsAsc" ? (
-                  <BsArrowDownShort />
-                ) : (
-                  <BsArrowUpShort />
-                )}
-              </button>
-            </th>
-            <th>
-              Price{" "}
-              <button
-                onClick={
-                  sortingPrice === ""
-                    ? () => {
-                        setSortingPrice("priceDesc");
-                      }
-                    : sortingPrice === "priceDesc"
-                    ? () => {
-                        setSortingPrice("priceAsc");
-                      }
-                    : () => {
-                        setSortingPrice("priceDesc");
-                      }
-                }
-              >
-                {sortingPrice === "" || sortingPrice === "priceAsc" ? (
-                  <BsArrowDownShort />
-                ) : (
-                  <BsArrowUpShort />
-                )}
-              </button>
-            </th>
-            <th>
-              Rating{" "}
-              <button
-                onClick={
-                  sortingRating === ""
-                    ? () => {
-                        setSortingRating("ratingDesc");
-                      }
-                    : sortingRating === "ratingDesc"
-                    ? () => {
-                        setSortingRating("ratingAsc");
-                      }
-                    : () => {
-                        setSortingRating("ratingDesc");
-                      }
-                }
-              >
-                {sortingRating === "" || sortingRating === "ratingAsc" ? (
-                  <BsArrowDownShort />
-                ) : (
-                  <BsArrowUpShort />
-                )}
-              </button>
-            </th>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {currentData.map((data, index) => (
-            <tr key={index}>
-              <td>
-                <img src={data.image} alt={data.title} height="100px" />
-              </td>
-              <td>
-                <Link to={`/product/id?id=${data.id}`}>{data.title}</Link>
-              </td>
-              <td>{data.price}€</td>
-              <td>
-                <StarRatings
-                  rating={data.rating}
-                  numberOfStars={5}
-                  starRatedColor="#ffd700"
-                  starDimension="40px"
-                  starSpacing="15px"
-                />
-              </td>
-              <td><button onClick={() => {addItem(data)}}>Add to Cart</button></td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <Paginator
-        totalRecords={data.length}
-        pageLimit={pageLimit}
-        pageNeighbours={2}
-        setOffset={setOffset}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
-    </>
+        ))}
+      </tbody>
+    </table>
+    <Paginator
+      totalRecords={data.length}
+      pageLimit={pageLimit}
+      pageNeighbours={2}
+      setOffset={setOffset}
+      currentPage={currentPage}
+      setCurrentPage={setCurrentPage}
+    />
+  </>
   );
 };
 

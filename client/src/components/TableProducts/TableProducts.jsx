@@ -90,28 +90,27 @@ const TableProducts = () => {
 
   useEffect(() => {
     if (input) {
-      const filterProducts = products.filter(product => product.title.toLowerCase().includes(input.toLocaleLowerCase()) || product.manufacturer.name.toLocaleLowerCase().includes(input.toLocaleLowerCase()));
+      const filterProducts = products.filter(
+        (product) =>
+          product.title.toLowerCase().includes(input.toLocaleLowerCase()) ||
+          product.manufacturer.name
+            .toLocaleLowerCase()
+            .includes(input.toLocaleLowerCase())
+      );
       setCurrentData(filterProducts.slice(offset, offset + pageLimit));
     }
   }, [debouncedSearchTerm, input, offset, products]);
 
   return (
     <>
-      <table>
-        <thead>
-          <tr>
-            <th>
-              <input
-                type="text"
-                placeholder="Search by name or manufacturer..."
-                autoComplete="off"
-                ref={inputSearch}
-                onChange={handleChange}
-              />
-            </th>
-            <th>
+      <table className="table">
+        <thead className="table-thead">
+          <tr className="table-thead-tr">
+            <th></th>
+            <th className="table-thead-tr-th" scope="col">
               Product{" "}
               <button
+              className="table-thead-tr-th-sorting"
                 onClick={
                   sortingProduct === ""
                     ? () => {
@@ -133,9 +132,10 @@ const TableProducts = () => {
                 )}
               </button>
             </th>
-            <th>
+            <th className="table-thead-tr-th" scope="col">
               Price{" "}
               <button
+              className="table-thead-tr-th-sorting"
                 onClick={
                   sortingPrice === ""
                     ? () => {
@@ -157,9 +157,10 @@ const TableProducts = () => {
                 )}
               </button>
             </th>
-            <th>
+            <th className="table-thead-tr-th" scope="col">
               Rating{" "}
               <button
+              className="table-thead-tr-th-sorting"
                 onClick={
                   sortingRating === ""
                     ? () => {
@@ -182,24 +183,35 @@ const TableProducts = () => {
               </button>
             </th>
           </tr>
+          <tr className="table-thead-tr">
+            <th className="table-thead-tr-th-input" colSpan="4">
+              <input
+                type="text"
+                placeholder="Search by name or manufacturer..."
+                autoComplete="off"
+                ref={inputSearch}
+                onChange={handleChange}
+              />
+            </th>
+          </tr>
         </thead>
-        <tbody>
+        <tbody className="table-tbody">
           {currentData.map((data, index) => (
-            <tr key={index}>
-              <td>
-                <img src={data.image} alt={data.title} height="100px" />
+            <tr key={index} className="table-tbody-tr">
+              <td className="table-tbody-tr-td">
+                <img src={data.image} alt={data.title} className="table-tbody-tr-td-img"/>
               </td>
-              <td>
+              <td className="table-tbody-tr-td">
                 <Link to={`/product/id?id=${data.id}`}>{data.title}</Link>
               </td>
-              <td>{data.price}€</td>
-              <td>
+              <td className="table-tbody-tr-td">{data.price}€</td>
+              <td className="table-tbody-tr-td">
                 <StarRatings
                   rating={data.rating}
                   numberOfStars={5}
                   starRatedColor="#ffd700"
-                  starDimension="40px"
-                  starSpacing="15px"
+                  starDimension="10px"
+                  starSpacing="2px"
                 />
               </td>
             </tr>

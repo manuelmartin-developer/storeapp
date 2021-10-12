@@ -46,16 +46,14 @@ const TableProductsAdmin = () => {
         );
 
         if (response.status === 202) {
-
-          
           Toast.fire({
             icon: "success",
             title: "Product remove from DB",
           });
-          
+
           setProducts(
             products.filter((current, currentIndex) => currentIndex !== index)
-            );
+          );
         }
       } catch (error) {
         Toast.fire({
@@ -68,35 +66,35 @@ const TableProductsAdmin = () => {
 
   return (
     <>
-      <table>
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Title</th>
-            <th>Remove</th>
+      <table className="table">
+        <thead className="table-thead">
+          <tr className="table-thead-tr">
+            <th className="table-thead-tr-th">Image</th>
+            <th className="table-thead-tr-th">Title</th>
+            <th className="table-thead-tr-th">Remove</th>
           </tr>
-            </thead>
-          <tbody>
-            {currentData.map((data, index) => (
-              <tr key={index}>
-                <td>
-                  <img src={data.image} alt={data.title} height="100px" />
-                </td>
-                <td>
+        </thead>
+        <tbody className="table-tbody">
+          {currentData.map((data, index) => (
+            <tr key={index} className="table-tbody-tr">
+              <td className="table-tbody-tr-td">
+                <img src={data.image} alt={data.title} height="100px" />
+              </td>
+              <td className="table-tbody-tr-td">
                 <Link to={`/update/id?id=${data.id}`}>{data.title}</Link>
               </td>
-                <td>
-                  <button
-                    onClick={() => {
-                      removeProduct(data.id, index);
-                    }}
-                  >
-                    Remove
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+              <td className="table-tbody-tr-td__button">
+                <button
+                  onClick={() => {
+                    removeProduct(data.id, index);
+                  }}
+                >
+                  X
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
       <Paginator
         totalRecords={data.length}

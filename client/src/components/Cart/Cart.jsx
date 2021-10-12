@@ -29,39 +29,37 @@ const Cart = () => {
 
   return (
     <section className="cart">
-    <h1>Total Cart {cartTotal.toFixed(2)}$</h1>
-    <table>
-      <thead>
-        <tr>
-        <th>Image</th>
-        <th>Title</th>
-        <th>Price</th>
-        <th>Quanty</th>
-        <th>Subtotal</th>
-        <th>Remove</th>
+    <h1 className="cart-resume">Total Cart {cartTotal.toFixed(2)}$</h1>
+    <table className="cart-table">
+      <thead className="cart-table-thead">
+        <tr className="cart-table-thead-tr">
+        <th className="cart-table-thead-tr-th">Image</th>
+        <th className="cart-table-thead-tr-th">Price</th>
+        <th className="cart-table-thead-tr-th">Quanty</th>
+        <th className="cart-table-thead-tr-th">Subtotal</th>
+        <th className="cart-table-thead-tr-th">Remove</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="cart-table-tbody">
       {items.map((item) => (
-        <tr key={item.id}>
-          <td><img src={item.image} alt={item.name} height="50px" /></td>
-          <td>{item.title}</td>
-          <td>{item.price}$</td>
-          <td>
+        <tr className="cart-table-tbody-tr" key={item.id}>
+          <td className="cart-table-tbody-tr-td"><img src={item.image} alt={item.name} height="50px" /></td>
+          <td className="cart-table-tbody-tr-td">{item.price}$</td>
+          <td className="cart-table-tbody-tr-td">
             <button
               onClick={() => updateItemQuantity(item.id, item.quantity - 1)}
               >
               -
             </button>
-              {item.quantity}
+                {item.quantity}
             <button
               onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
             >
               +
             </button>
             </td>
-            <td>{item.itemTotal.toFixed(2)}$</td>
-            <td><button onClick={() => removeItem(item.id)}>&times;</button></td>
+            <td className="cart-table-tbody-tr-td">{item.itemTotal.toFixed(2)}$</td>
+            <td className="cart-table-tbody-tr-td"><button onClick={() => removeItem(item.id)}>&times;</button></td>
         </tr>
         
       ))}

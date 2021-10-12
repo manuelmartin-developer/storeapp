@@ -49,9 +49,9 @@ const Recover = () => {
   return (
     <section className="recover">
       <form
-    className="signup-form"
+    className="recover-form"
     onSubmit={handleSubmit(onSubmit)}
-    autoComplete="on"
+    autoComplete="off"
   >
     <input
       type="email"

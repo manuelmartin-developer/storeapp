@@ -51,7 +51,6 @@ router.get('/github/callback',
         if (req.user.user_id) {
             const token = generateToken(res, req.user.user_id, req.user.email, req.user.role)
             res.redirect('http://localhost:3000/login?token=' + token);
-            res.sendStatus(200);
         } else {
             res.status(400).json({
                 error: error.message

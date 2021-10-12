@@ -1,8 +1,14 @@
 .footer{
-    position: fixed;
-    bottom: 0;
-    height: 35px;
-    display: flex;
-    align-items: center;
+
+   margin-top: auto;
+   height: 30px;
+   display: flex;
+   align-items: center;
+   justify-content: flex-end;
+   
+   & > a{
+       text-decoration: none;
+       color: #66FF66;
+   }
 
 }

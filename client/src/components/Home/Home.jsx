@@ -54,7 +54,7 @@ const Home = () => {
             <NewProduct />
           </section>
         <section className="productlist-admin">
-              <TableProductsAdmin />
+            <TableProductsAdmin />
         </section>
         </section>
       );

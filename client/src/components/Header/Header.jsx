@@ -6,58 +6,60 @@ import { BsMinecartLoaded } from "react-icons/bs";
 import { useCart } from "react-use-cart";
 
 const Header = () => {
-
   const { totalItems } = useCart();
 
   const { userLogged } = useContext(userContext);
   const { isAdmin } = useContext(adminContext);
 
-  if (userLogged && isAdmin) {
-    return (
-      <header className="header">
-        <Link to="/" className="header-logo">
-          <p>Hello world! Is admin</p>
-        </Link>
-        <div className="header-links">
-          <Link to="/logout" className="header-links-link">
-            <p>Logout</p>
-          </Link>
-        </div>
-      </header>
-    );
-  }
-  if (userLogged && !isAdmin) {
-    return (
-      <header className="header">
-        <Link to="/" className="header-logo">
-          <p>Hello world! Is user</p>
-        </Link>
-        <div className="header-links">
-          <Link to="/logout" className="header-links-link">
-            <p>Logout</p>
-          </Link>
-        </div>
-        <div className="header-cart">
-          <Link to="/cart" className="header-link">
-            <BsMinecartLoaded />
-            <span className="header-cart-quanty"> {totalItems} </span>
-          </Link>
-        </div>
-      </header>
-    );
-  }
-  if (!userLogged) {
-    return (
-      <header className="header">
-        <Link to="/" className="header-logo">
-          <p>Hello world!</p>
-        </Link>
-        <Link to="/login" className="header-link">
-          <p>login</p>
-        </Link>
-      </header>
-    );
-  }
+  return (
+    <header className="header">
+      {userLogged && isAdmin ? (
+        <>
+          <div className="header-logo">
+            <Link to="/">Hello world!</Link>
+          </div>
+          <div className="header-links">
+            <Link to="/logout" className="header-links-link">
+              <p className="text">
+                root&gt;_ <strong>exit</strong>
+              </p>
+            </Link>
+          </div>
+        </>
+      ) : userLogged && !isAdmin ? (
+        <>
+          <div className="header-logo">
+            <Link to="/">Hello world!</Link>
+            <Link to="/cart" className="header-cart-link">
+              <BsMinecartLoaded />
+              <span className="header-cart-quantity"> {totalItems} </span>
+            </Link>
+          </div>
+
+          <div className="header-links">
+            <Link to="/logout" className="header-links-link">
+              <p className="text">
+                user&gt;_ <strong>exit</strong>
+              </p>
+            </Link>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="header-logo">
+            <Link to="/">Hello world!</Link>
+          </div>
+          <div className="header-links">
+            <Link to="/login" className="header-links-link">
+              <p className="text">
+                guest&gt;_ <strong>login</strong>
+              </p>
+            </Link>
+          </div>
+        </>
+      )}
+    </header>
+  );
 };
 
 export default Header;

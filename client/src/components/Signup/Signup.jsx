@@ -25,7 +25,7 @@ const Signup = () => {
       },
     };
 
-    console.log("");
+    
     (async () => {
       try {
         const response = await axios.post(

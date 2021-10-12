@@ -1,10 +1,19 @@
 // Imports
 
+@import '../components/Main/Main.scss';
 @import '../components/Header/Header.scss';
 @import '../components/Footer/Footer.scss';
 @import '../components/Login/Login.scss';
+@import '../components/Cart/Cart.scss';
+@import '../components/Details/Details.scss';
+@import '../components/Recover/Recover.scss';
+@import '../components/Signup/Signup.scss';
+@import '../components/NewProduct/NewProduct.scss';
+@import '../components/Update/Update.scss';
+@import '../components/Reset/Reset.scss';
 @import '../components/TableProducts/TableProducts.scss';
-
+@import '../components/TableProductsUser/TableProductsUser.scss';
+@import '../components/TableProductsAdmin/TableProductsAdmin.scss';
 
 
 // Fonts
@@ -12,3 +21,20 @@
     font-family: 'hello';
     src: local('hello'), url(../fonts/hello-world.ttf) format('truetype');
   }
+
+  // Media Query
+  $small: 300px;
+  $medium: 900px;
+  $large: 1200px;
+
+  @media screen and (min-width: $small) {
+        
+  }
+  @media only screen and (min-width: $medium) {
+      
+
+    }
+  @media only screen and (min-width: $large) {
+      
+
+    }

@@ -52,7 +52,7 @@ const users = {
             const address = await req.body.address;
             const newUser = await createUser(name, surname, email, password, address);
             if (newUser) {
-                res.sendStatus(200);
+                res.sendStatus(201);
             }
 
         } catch (error) {

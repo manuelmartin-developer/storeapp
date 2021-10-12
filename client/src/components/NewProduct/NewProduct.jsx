@@ -63,9 +63,9 @@ const NewProduct = () => {
 
   return (
     <section className="newproduct">
-    <h1>There are {products.length} products in store</h1>
+    <h1 className="newproduct-resume">There are {products.length} products in store</h1>
     <form
-    className="signup-form"
+    className="newproduct-form"
     onSubmit={handleSubmit(onSubmit)}
     autoComplete="on"
   >
