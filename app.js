@@ -15,7 +15,7 @@ const corsOptions = {
     origin: [
       "https://localhost:9000",
       "https://localhost:3000",
-      "https://helloworld-store.herokuapp.com/"
+      "https://helloworld-store.herokuapp.com"
 
     ]
   };
