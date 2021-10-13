@@ -27,7 +27,7 @@ const Login = () => {
     (async () => {
       try {
         const response = await axios.post(
-          "http://localhost:9000/users/login",
+          "https://helloworld-store.herokuapp.com/users/login",
           payload,
           options
         );
@@ -117,7 +117,7 @@ const Login = () => {
         src="/assets/signin_google.png"
         alt=""
         onClick={() =>
-          window.open("http://localhost:9000/users/google", "_self")
+          window.open("https://helloworld-store.herokuapp.com/users/google", "_self")
         }
       />
       <img
@@ -125,7 +125,7 @@ const Login = () => {
         src="/assets/signin_github.png"
         alt=""
         onClick={() =>
-          window.open("http://localhost:9000/users/github", "_self")
+          window.open("https://helloworld-store.herokuapp.com/users/github", "_self")
         }
       />
 

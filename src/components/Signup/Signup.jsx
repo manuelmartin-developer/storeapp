@@ -27,7 +27,7 @@ const Signup = () => {
     (async () => {
       try {
         const response = await axios.post(
-          "http://localhost:9000/users/signup",
+          "https://helloworld-store.herokuapp.com/users/signup",
           payload,
           options
         );
