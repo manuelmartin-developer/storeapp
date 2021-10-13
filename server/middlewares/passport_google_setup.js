@@ -1,13 +1,11 @@
+// Imports
 const passport = require('passport')
 require('dotenv').config()
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const {
-    createUser,
-    getUser
-} = require('../models/users')
+const { createUser, getUser } = require('../models/users')
 const bcryptjs = require('bcryptjs');
 
-// Crear una contraseña random para el usuario registrado con Google
+// Method that generate random pass
 function randomPass() {
     let text = "";
     const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -16,6 +14,7 @@ function randomPass() {
     return text;
 }
 
+// GoogleOAuth config
 passport.use(new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,

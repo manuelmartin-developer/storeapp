@@ -1,6 +1,8 @@
+// Imports
 const mongoose = require('../db/productsDB');
 const mongooseSerial = require('mongoose-serial');
 
+// Schema for products DB
 const productSchema = new mongoose.Schema({
     id: {
         type: String

@@ -1,7 +1,10 @@
+// Imports
 const Products = require('../models/productSchema');
 
+// Products controller
 const products = {
 
+    // Retrieve all products from Mongodb
     getAllProducts: async (req, res) => {
         try {
             const allProducts = await Products.find();
@@ -12,10 +15,11 @@ const products = {
             });
         }
     },
+
+    // Add a product to Mongodb
     addProduct: async (req, res) => {
         try {
             const product = await req.body;
-
             const newProduct = await new Products({
                 title: product.title,
                 image: product.image,
@@ -37,6 +41,8 @@ const products = {
             });
         }
     },
+
+    // Remove one product from Mongodb
     removeProduct: async (req, res) => {
         try {
             const id = req.body.id;
@@ -51,14 +57,15 @@ const products = {
             });
         }
     },
+
+    // Update the properties of a Product
     updateProduct: async (req, res) => {
         try {
-
             const product = await req.body;
             const updateProduct = await Products.findOneAndUpdate({
                 id: product.id
             }, product);
-            
+
             if (updateProduct) {
                 res.sendStatus(200);
             }

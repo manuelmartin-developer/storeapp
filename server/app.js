@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 
-// EndPoints
+// API endPoints
 app.use('/products', api_products);
 app.use('/users', api_users);
 

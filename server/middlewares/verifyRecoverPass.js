@@ -1,5 +1,7 @@
+// Imports
 const User = require('../models/users')
 
+// Middleware that check if email exists in SQLdb
 checkEmailRecover = (req, res, next) => {
     const user = User.getUser(req.body.email)
         .then((data) => {
@@ -10,8 +12,8 @@ checkEmailRecover = (req, res, next) => {
         })
 };
 
-
-
-const verifyUserRecover = { checkEmailRecover };
+const verifyUserRecover = {
+    checkEmailRecover
+};
 
 module.exports = verifyUserRecover

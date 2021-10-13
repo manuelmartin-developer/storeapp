@@ -1,3 +1,4 @@
+// Imports
 const { getUser, createUser, updatePassword } = require('../models/users');
 const generateToken = require('../middlewares/generateToken');
 const bcryptjs = require('bcryptjs');
@@ -6,6 +7,8 @@ const sendEmail = require("../helpers/sendEmail");
 
 const users = {
 
+    // Retrieve login access data from client, generate a token
+    // and send it to client
     login: async (req, res) => {
         try {
             const user = await getUser(req.body.email);
@@ -22,6 +25,7 @@ const users = {
             });
         }
     },
+    // Retrieve token from client and disable it
     logout: async (req, res) => {
         try {
 
@@ -43,6 +47,7 @@ const users = {
             });
         }
     },
+    // Retrieve data from client and save in SQLdb
     signup: async (req, res) => {
         try {
             const name = await req.body.name;
@@ -61,6 +66,8 @@ const users = {
             });
         }
     },
+    // Retrieve email from client, check its exist in SQLdb and send
+    // a mail for password reset
     recoverPass: async (req, res) => {
         try {
 
@@ -88,6 +95,7 @@ const users = {
             });
         }
     },
+    // Retrieve new password from client, encrypts it, and update it in SQLdb
     resetPass: async (req, res) => {
         try {
             const reqPass = await req.body.pass1;

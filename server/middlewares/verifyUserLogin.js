@@ -1,7 +1,8 @@
+// Imports
 const crypt = require('bcryptjs')
 const User = require('../models/users')
 
-
+// Middleware that checks login user
 checkEmailAndPassword = (req, res, next) => {
     const user = User.getUser(req.body.email)
         .then((data) => {

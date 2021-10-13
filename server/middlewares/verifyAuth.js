@@ -1,6 +1,8 @@
+// Imports
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
+// Middleware that check if token is valid
 verifyToken = (req, res, next) => {
     if (!req.body.token) {
         return res.status(403).send('No token')

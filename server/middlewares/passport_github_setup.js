@@ -1,13 +1,11 @@
+// Imports
 const passport = require('passport')
 require('dotenv').config()
 const GitHubStrategy = require('passport-github2').Strategy;
-const {
-    createUser,
-    getUser
-} = require('../models/users')
+const { createUser, getUser } = require('../models/users')
 const bcryptjs = require('bcryptjs');
 
-// Crear una contraseña random para el usuario registrado con github
+// Method that generate random password
 function randomPass() {
     let text = "";
     const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -16,6 +14,7 @@ function randomPass() {
     return text;
 }
 
+// GitHubOAuth config
 passport.use(new GitHubStrategy({
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,

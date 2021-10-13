@@ -1,6 +1,8 @@
+// Imports
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
+// Generate a token for client auth
 const generateToken = (res, user_id, email, role) => {
 
     const token = jwt.sign({
