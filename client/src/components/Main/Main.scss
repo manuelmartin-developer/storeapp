@@ -1,0 +1,54 @@
+$old-computer-text: #66ff66;
+$old-computer-back: #282828;
+body {
+  display: flex;
+  flex-direction: column;
+
+  background-color: #282828;
+  height: 100%;
+  margin: 0;
+  color: $old-computer-text;
+  text-shadow: 0 0 5px #c8c8c8;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vmax;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(black, 0.15),
+      rgba(black, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+  }
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+input[type="number"] {
+  background-color: $old-computer-back;
+  font-family: hello;
+  caret-color: $old-computer-text;
+  color: $old-computer-text;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  width: 70%;
+  margin: 10px 0px;
+}
+.react-hooks-paginator > li {
+  margin-bottom: 20px;
+  & > button {
+    font-family: hello;
+    background-color: #282828;
+    border: none;
+    border-radius: 0;
+    color: $old-computer-text;
+  }
+}

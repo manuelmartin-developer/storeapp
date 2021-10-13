@@ -1,0 +1,12 @@
+.footer {
+  margin-top: auto;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  & > a {
+    text-decoration: none;
+    color: #66ff66;
+  }
+}

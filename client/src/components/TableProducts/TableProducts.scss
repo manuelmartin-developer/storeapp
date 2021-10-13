@@ -1,0 +1,57 @@
+$old-computer: #66ff66;
+
+.table {
+  table-layout: fixed;
+  margin-top: 100px;
+  padding: 20px;
+  width: 100%;
+  &-thead {
+    &-tr {
+      text-align: center;
+      &-th {
+        text-align: center;
+        &-sorting {
+          background-color: transparent;
+          border: none;
+          color: $old-computer;
+          padding: 0;
+          font-size: 1rem;
+        }
+
+        &-input > input {
+          text-align: center;
+        }
+      }
+    }
+  }
+  &-tbody {
+    &-tr {
+      &-td {
+        text-align: center;
+        & > a {
+          color: $old-computer;
+          text-decoration: none;
+        }
+        & > button {
+          background-color: #282828;
+          border: none;
+          color: $old-computer;
+          font-weight: bold;
+          position: relative;
+          top: -25px;
+          right: -25px;
+          padding: 2px;
+          border-radius: 50%;
+          z-index: 0;
+        }
+
+        &-img {
+          height: 70px;
+        }
+      }
+    }
+  }
+}
+.star-ratings {
+  z-index: -1;
+}
