@@ -7,15 +7,13 @@ import { userContext } from "../../contexts/userContext";
 import { adminContext } from "../../contexts/adminContext";
 
 const NewProduct = () => {
-
   const { register, handleSubmit, reset } = useForm();
   const { products, setProducts } = useContext(productsContext);
   const { userLogged } = useContext(userContext);
   const { isAdmin } = useContext(adminContext);
 
-
   const onSubmit = (data, e) => {
-    if(userLogged && isAdmin){
+    if (userLogged && isAdmin) {
       const payload = {
         title: data.title,
         image: data.image,
@@ -25,15 +23,14 @@ const NewProduct = () => {
         cif: data.cif,
         address: data.address,
       };
-  
+
       const options = {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
       };
-  
-  
+
       (async () => {
         try {
           const response = await axios.post(
@@ -41,14 +38,14 @@ const NewProduct = () => {
             payload,
             options
           );
-  
+
           if (response.status === 201) {
             Toast.fire({
               icon: "success",
               title: "Product added to DB",
             });
-  
-            setProducts([...products, response.data])
+
+            setProducts([...products, response.data]);
           }
         } catch (error) {
           Toast.fire({
@@ -56,65 +53,68 @@ const NewProduct = () => {
             title: "Something has failed",
           });
         }
-      })(); 
+      })();
     }
     reset();
   };
 
   return (
     <section className="newproduct">
-    <h1 className="newproduct-resume">There are {products.length} products in store</h1>
-    <form
-    className="newproduct-form"
-    onSubmit={handleSubmit(onSubmit)}
-    autoComplete="on"
-  >
-    <input
-      type="text"
-      placeholder="title"
-      name="title"
-      {...register("title", { required: true })}
-    />
-    <input
-      type="url"
-      placeholder="image url"
-      name="image"
-      {...register("image", { required: true })}
-    />
-    <input
-      type="number"
-      placeholder="rating"
-      name="rating"
-      {...register("rating", {
-        required: true, maxLength: 1
-      })}
-    />
-    <input
-      type="text"
-      placeholder="price"
-      name="price"
-      {...register("price", { required: true })}
-    />
-    <input
-      type="text"
-      placeholder="manufacturer name"
-      name="name"
-      {...register("name", { required: true})}
-    />
-    <input
-      type="text"
-      placeholder="manufacturer cif"
-      name="cif"
-      {...register("cif", { required: true})}
-    />
-    <input
-      type="text"
-      placeholder="manufacturer address"
-      name="address"
-      {...register("address", { required: true})}
-    />
-    <button type="submit">Add Product</button>
-  </form>
+      <h1 className="newproduct-resume">
+        There are {products.length} products in store
+      </h1>
+      <form
+        className="newproduct-form"
+        onSubmit={handleSubmit(onSubmit)}
+        autoComplete="on"
+      >
+        <input
+          type="text"
+          placeholder="title"
+          name="title"
+          {...register("title", { required: true })}
+        />
+        <input
+          type="url"
+          placeholder="image url"
+          name="image"
+          {...register("image", { required: true })}
+        />
+        <input
+          type="number"
+          placeholder="rating"
+          name="rating"
+          {...register("rating", {
+            required: true,
+            maxLength: 1,
+          })}
+        />
+        <input
+          type="text"
+          placeholder="price"
+          name="price"
+          {...register("price", { required: true })}
+        />
+        <input
+          type="text"
+          placeholder="manufacturer name"
+          name="name"
+          {...register("name", { required: true })}
+        />
+        <input
+          type="text"
+          placeholder="manufacturer cif"
+          name="cif"
+          {...register("cif", { required: true })}
+        />
+        <input
+          type="text"
+          placeholder="manufacturer address"
+          name="address"
+          {...register("address", { required: true })}
+        />
+        <button type="submit">Add Product</button>
+      </form>
     </section>
   );
 };

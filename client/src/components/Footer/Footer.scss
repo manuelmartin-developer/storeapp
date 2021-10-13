@@ -1,14 +1,12 @@
-.footer{
+.footer {
+  margin-top: auto;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 
-   margin-top: auto;
-   height: 30px;
-   display: flex;
-   align-items: center;
-   justify-content: flex-end;
-   
-   & > a{
-       text-decoration: none;
-       color: #66FF66;
-   }
-
+  & > a {
+    text-decoration: none;
+    color: #66ff66;
+  }
 }

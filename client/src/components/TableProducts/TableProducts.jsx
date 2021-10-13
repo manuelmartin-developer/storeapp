@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { productsContext } from "../../contexts/productsContext";
 import useDebounce from "../../hooks/useDebounce";
 import Paginator from "react-hooks-paginator";
-import Rate from 'rc-rate';
-import 'rc-rate/assets/index.css';
+import Rate from "rc-rate";
+import "rc-rate/assets/index.css";
 import { BsArrowUpShort, BsArrowDownShort } from "react-icons/bs";
 
 const TableProducts = () => {
@@ -111,7 +111,7 @@ const TableProducts = () => {
             <th className="table-thead-tr-th" scope="col">
               Product{" "}
               <button
-              className="table-thead-tr-th-sorting"
+                className="table-thead-tr-th-sorting"
                 onClick={
                   sortingProduct === ""
                     ? () => {
@@ -136,7 +136,7 @@ const TableProducts = () => {
             <th className="table-thead-tr-th" scope="col">
               Price{" "}
               <button
-              className="table-thead-tr-th-sorting"
+                className="table-thead-tr-th-sorting"
                 onClick={
                   sortingPrice === ""
                     ? () => {
@@ -161,7 +161,7 @@ const TableProducts = () => {
             <th className="table-thead-tr-th" scope="col">
               Rating{" "}
               <button
-              className="table-thead-tr-th-sorting"
+                className="table-thead-tr-th-sorting"
                 onClick={
                   sortingRating === ""
                     ? () => {
@@ -200,19 +200,23 @@ const TableProducts = () => {
           {currentData.map((data, index) => (
             <tr key={index} className="table-tbody-tr">
               <td className="table-tbody-tr-td">
-                <img src={data.image} alt={data.title} className="table-tbody-tr-td-img"/>
+                <img
+                  src={data.image}
+                  alt={data.title}
+                  className="table-tbody-tr-td-img"
+                />
               </td>
               <td className="table-tbody-tr-td">
                 <Link to={`/product/id?id=${data.id}`}>{data.title}</Link>
               </td>
               <td className="table-tbody-tr-td">{data.price}€</td>
               <td className="table-tbody-tr-td">
-              <Rate
-            disabled={true}
-              value={data.rating}
-              style={{ fontSize: 10 }}
-              allowClear={false}
-            />
+                <Rate
+                  disabled={true}
+                  value={data.rating}
+                  style={{ fontSize: 10 }}
+                  allowClear={false}
+                />
               </td>
             </tr>
           ))}

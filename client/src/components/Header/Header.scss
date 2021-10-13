@@ -1,11 +1,12 @@
 $old-computer: #66ff66;
 
 .header {
+  height: 100px;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: 100vw;
   position: fixed;
   background-color: #282828;
   top: 0;
@@ -42,8 +43,7 @@ $old-computer: #66ff66;
       text-decoration: none;
       margin: 0 10px;
       padding: 0;
-      
-      }
+    }
   }
   &-links {
     margin-right: 50px;
@@ -53,11 +53,9 @@ $old-computer: #66ff66;
     width: 100%;
 
     &-link {
-      
       color: $old-computer;
-      text-decoration: none; 
+      text-decoration: none;
       height: 40px;
-      
     }
   }
 
@@ -68,14 +66,14 @@ $old-computer: #66ff66;
     color: $old-computer;
     margin-right: 10px;
     width: 10%;
-    
+
     &-link {
       display: flex;
       flex-direction: row;
       text-decoration: none;
       font-weight: bold;
     }
-    
+
     & > a {
       color: $old-computer;
     }

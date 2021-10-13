@@ -12,6 +12,7 @@ const Cart = () => {
     removeItem,
     emptyCart
   } = useCart();
+  
   const history = useHistory();
 
 

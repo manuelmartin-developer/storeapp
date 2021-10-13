@@ -6,7 +6,6 @@ import axios from "axios";
 import { Toast } from "../../hooks/useToast";
 
 const Reset = () => {
-  
   const [token] = useQueryParam("token", StringParam);
 
   const decode = jwt_decode(token);

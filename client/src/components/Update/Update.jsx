@@ -14,7 +14,7 @@ const Update = () => {
   const product = products.filter((element) => element.id === id);
 
   const { register, handleSubmit } = useForm();
-  const history = useHistory()
+  const history = useHistory();
 
   const onSubmit = (data, e) => {
     const payload = {
@@ -23,11 +23,11 @@ const Update = () => {
       image: data.image,
       rating: data.rating,
       price: data.price,
-      manufacturer:{
+      manufacturer: {
         name: data.name,
         cif: data.cif,
         address: data.address,
-      }
+      },
     };
 
     const options = {
@@ -44,7 +44,7 @@ const Update = () => {
           payload,
           options
         );
-        history.push('/')
+        history.push("/");
 
         if (response.status === 200) {
           Toast.fire({
@@ -71,7 +71,6 @@ const Update = () => {
         onSubmit={handleSubmit(onSubmit)}
         autoComplete="on"
       >
-
         <input
           type="text"
           name="title"
@@ -89,28 +88,37 @@ const Update = () => {
           {...register("rating", {
             required: true,
             maxLength: 1,
-            value: product[0].rating 
+            value: product[0].rating,
           })}
         />
         <input
           type="text"
           name="price"
-          {...register("price", { required: true, value: product[0].price  })}
+          {...register("price", { required: true, value: product[0].price })}
         />
         <input
           type="text"
           name="name"
-          {...register("name", { required: true, value: product[0].manufacturer.name })}
+          {...register("name", {
+            required: true,
+            value: product[0].manufacturer.name,
+          })}
         />
         <input
           type="text"
           name="cif"
-          {...register("cif", { required: true, value: product[0].manufacturer.cif })}
+          {...register("cif", {
+            required: true,
+            value: product[0].manufacturer.cif,
+          })}
         />
         <input
           type="text"
           name="address"
-          {...register("address", { required: true, value: product[0].manufacturer.address })}
+          {...register("address", {
+            required: true,
+            value: product[0].manufacturer.address,
+          })}
         />
         <button type="submit">Update Product</button>
       </form>

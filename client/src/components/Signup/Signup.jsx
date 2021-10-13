@@ -8,7 +8,6 @@ const Signup = () => {
   const { register, handleSubmit } = useForm();
   const history = useHistory();
 
-
   const onSubmit = (data, e) => {
     const payload = {
       name: data.name,
@@ -25,7 +24,6 @@ const Signup = () => {
       },
     };
 
-    
     (async () => {
       try {
         const response = await axios.post(
@@ -35,7 +33,7 @@ const Signup = () => {
         );
 
         if (response.status === 201) {
-        history.push("/login");
+          history.push("/login");
           Toast.fire({
             icon: "success",
             title: "Now you can login",
@@ -60,20 +58,20 @@ const Signup = () => {
           type="text"
           placeholder="name"
           name="name"
-          {...register("name", { required: "You must specify name" })}
+          {...register("name", { required: true })}
         />
         <input
           type="text"
           placeholder="surname"
           name="surname"
-          {...register("surname", { required: "You must specify surname" })}
+          {...register("surname", { required: true })}
         />
         <input
           type="email"
           placeholder="email"
           name="email"
           {...register("email", {
-            required: "You must specify a correct email",
+            required: true,
           })}
         />
         <input
@@ -92,7 +90,7 @@ const Signup = () => {
           type="text"
           placeholder="address"
           name="address"
-          {...register("address", { required: "You must specify an address" })}
+          {...register("address", { required: true })}
         />
         <button type="submit">Sign Up</button>
       </form>

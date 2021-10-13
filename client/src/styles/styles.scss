@@ -1,281 +1,245 @@
 // Imports
 
-@import '../components/Main/Main.scss';
-@import '../components/Header/Header.scss';
-@import '../components/Footer/Footer.scss';
-@import '../components/Login/Login.scss';
-@import '../components/Cart/Cart.scss';
-@import '../components/Details/Details.scss';
-@import '../components/Recover/Recover.scss';
-@import '../components/Signup/Signup.scss';
-@import '../components/NewProduct/NewProduct.scss';
-@import '../components/Update/Update.scss';
-@import '../components/Reset/Reset.scss';
-@import '../components/Error/Error.scss';
-@import '../components/TableProducts/TableProducts.scss';
-@import '../components/TableProductsUser/TableProductsUser.scss';
-@import '../components/TableProductsAdmin/TableProductsAdmin.scss';
-
+@import "../components/Main/Main.scss";
+@import "../components/Header/Header.scss";
+@import "../components/Footer/Footer.scss";
+@import "../components/Login/Login.scss";
+@import "../components/Cart/Cart.scss";
+@import "../components/Details/Details.scss";
+@import "../components/Recover/Recover.scss";
+@import "../components/Signup/Signup.scss";
+@import "../components/NewProduct/NewProduct.scss";
+@import "../components/Update/Update.scss";
+@import "../components/Reset/Reset.scss";
+@import "../components/Error/Error.scss";
+@import "../components/TableProducts/TableProducts.scss";
+@import "../components/TableProductsUser/TableProductsUser.scss";
+@import "../components/TableProductsAdmin/TableProductsAdmin.scss";
 
 // Fonts
 @font-face {
-    font-family: 'hello';
-    src: local('hello'), url(../fonts/hello-world.ttf) format('truetype');
+  font-family: "hello";
+  src: local("hello"), url(../fonts/hello-world.ttf) format("truetype");
+}
+
+// Media Query
+$medium: 768px;
+$large: 1200px;
+
+@media only screen and (min-width: $medium) {
+  .footer {
+    margin-right: 20px;
+    width: 100%;
+  }
+  .header {
+    padding: 20px;
+
+    &-logo {
+      & > a {
+        font-size: 3rem;
+      }
+    }
+
+    &-cart-link > span {
+      font-size: 1.5rem;
+      margin-right: 40px;
+    }
+
+    &-links {
+      &-link {
+        & > p {
+          font-size: 1.5rem;
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+  .text {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+  .text::after {
+    top: 4px;
+    width: 10px;
+    height: 1.5rem;
   }
 
-  // Media Query
-  $medium: 768px;
-  $large: 1200px;
-
-
-    
-  @media only screen and (min-width: $medium) {
- 
-    .footer{
-      margin-right: 20px;
-      width: 100%;
+  .login {
+    font-size: 1.5rem;
+    &-img {
+      height: 50px;
     }
-    .header{
-      padding: 20px;
-
-      &-logo{
-        & > a{
-          font-size: 3rem;
-        }
-      }
-
-      &-cart-link > span{
+    &-form {
+      & > input {
         font-size: 1.5rem;
-        margin-right: 40px;
       }
-
-      &-links{
-        &-link{
-          & > p{
-            font-size: 1.5rem;
-            margin-right: 20px;
-
-          }
-        }
+      & > button {
+        font-size: 1.5rem;
       }
     }
-    .text {
-    
+  }
+
+  .signup-form {
+    & > input {
+      margin-top: 50px;
       font-size: 1.5rem;
-      margin-right: 10px;
     }
-    .text::after {
-      top: 4px;
-      width: 10px;
-      height: 1.5rem;
-    }
-
-    .login{
-
+    & > button {
       font-size: 1.5rem;
-      &-img{
-        height: 50px;
+    }
+  }
+  .recover {
+    font-size: 1.5rem;
+    &-form {
+      & > input {
+        margin-top: 50px;
+        font-size: 1.5rem;
       }
-      &-form{  
-        & > input{
-         font-size: 1.5rem;
+      & > button {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .productlist {
+    margin-top: 200px;
+    font-size: 1.5rem;
+  }
+  .details > img {
+    width: 70%;
+  }
+  .details-table {
+    font-size: 1.5rem;
+  }
+
+  .cart {
+    margin-top: 180px;
+    font-size: 1.5rem;
+
+    & > button {
+      font-size: 1.5rem;
+      margin-top: 40px;
+    }
+
+    &-table {
+      &-tbody-tr-td {
+        & > img {
+          height: 100px;
         }
         & > button {
-         font-size: 1.5rem;
-
-       }
+          font-size: 2rem;
+        }
       }
     }
+  }
 
-    .signup-form{
-      
-        & > input{
-          margin-top: 50px;
-          font-size: 1.5rem;
-        }
-        & > button{
-          font-size: 1.5rem;
+  .newproduct {
+    font-size: 1.5rem;
 
-        }
-
-      
-    }
-    .recover{
+    &-form {
       font-size: 1.5rem;
-      &-form{
-        & > input{
-          margin-top: 50px;
-          font-size: 1.5rem;
-        }
-        & > button{
-          font-size: 1.5rem;
-
-        }
-
-      }
-    }
-    .productlist{
-      margin-top: 200px;
-      font-size: 1.5rem;
-      
-     
-    }
-    .details > img{
-      width: 70%;
-    }
-    .details-table{
-      font-size: 1.5rem;
-    }
-
-    .cart{
-      margin-top: 180px;
-      font-size: 1.5rem;
-      
-      & > button{
+      & > input {
         font-size: 1.5rem;
-        margin-top: 40px;
       }
+      & > button {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+      }
+    }
+  }
+  .table-tbody-tr-td__button > button {
+    font-size: 1.5rem;
+  }
+  .table-tbody-tr-td > img {
+    height: 200px;
+  }
 
-      &-table{
-        
-        &-tbody-tr-td{
-          & > img{
-            height: 100px;
+  .update-form {
+    & > input {
+      font-size: 1.5rem;
+    }
+    & > button {
+      font-size: 1.5rem;
+    }
+  }
+
+  .table {
+    &-thead {
+      &-tr {
+        &-th {
+          &-sorting {
+            font-size: 1.5rem;
           }
-          & > button{
+
+          &-input > input {
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 20px;
+          }
+        }
+      }
+    }
+    &-tbody {
+      &-tr {
+        &-td {
+          & > button {
+            background-color: #282828;
+            border: none;
+            color: $old-computer;
+            font-weight: bold;
+            font-size: 1.5rem;
+            position: relative;
+            width: 40px;
+            height: 40px;
+            top: -20px;
+            right: 45px;
+            padding: 2px;
+            border-radius: 20px;
+            z-index: 0;
+            vertical-align: middle;
+          }
+
+          &-img {
+            height: 120px;
+          }
+        }
+      }
+    }
+  }
+  .rc-rate-disabled > li {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: $large) {
+  .table {
+    &-thead {
+      &-tr {
+        &-th {
+          &-sorting {
             font-size: 2rem;
           }
         }
       }
     }
-
-    .newproduct{
-      font-size: 1.5rem;
-
-     &-form{
-      font-size: 1.5rem;
-      & > input{
-      font-size: 1.5rem;
-
-      }
-      & > button{
-      font-size: 1.5rem;
-      margin-bottom: 30px;
-
-      }
-     }
-
-    }
-      .table-tbody-tr-td__button > button{
-        font-size: 1.5rem;
-      }
-      .table-tbody-tr-td > img{
-        height: 200px;
-      }
-
-      .update-form{
-        margin-top: 200px;
-
-        & > input{
-          font-size: 1.5rem;
-        }
-        & > button{
-          font-size: 1.5rem;
-        }
-      }
-
-    .table{
-      &-thead{
-         
-          &-tr{
-              
-              &-th{
-                 
-                  &-sorting{
-
-                      font-size: 1.5rem;
-                  }
-               
-                  &-input > input{
-                      font-size: 1.5rem;
-                      text-align: center;
-                      margin: 20px;
-                  }
-              }
+    &-tbody {
+      &-tr {
+        &-td {
+          &-img {
+            height: 200px;
           }
-      }
-      &-tbody{
-          &-tr{       
-              &-td{
-
-                  & > button{
-                      background-color: #282828;
-                      border: none;
-                      color: $old-computer;
-                      font-weight: bold;
-                      font-size: 1.5rem;
-                      position: relative;
-                      width: 40px;
-                      height: 40px;
-                      top: -20px;
-                      right: 45px;
-                      padding: 2px;
-                      border-radius: 20px;
-                      z-index: 0;
-                      vertical-align: middle;
-  
-                  }
-  
-                  &-img{
-                      height: 120px;
-                  }
-              }
-  
-          }
-      }
-  }
-  .rc-rate-disabled > li{
-
-      font-size: 20px;
-
-  }
-
-    }
-
-    @media only screen and (min-width: $large) {
-
-      .table{
-        &-thead{
-           
-            &-tr{
-                
-                &-th{
-                   
-                    &-sorting{
-  
-                        font-size: 2rem;
-                    }
-                 
-                }
-            }
         }
-        &-tbody{
-            &-tr{       
-                &-td{
-  
-                    &-img{
-                        height: 200px;
-                    }
-                }
-    
-            }
-        }
+      }
     }
-
-    .rc-rate-disabled > li{
-
-      font-size: 30px;
-
   }
 
-    }
+  .recover {
+    margin-top: 250px;
+  }
+
+  .update {
+    margin-top: 250px;
+  }
+  .rc-rate-disabled > li {
+    font-size: 30px;
+  }
+}

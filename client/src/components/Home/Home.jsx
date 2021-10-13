@@ -4,12 +4,12 @@ import TableProductsUser from "../TableProductsUser";
 import TableProductsAdmin from "../TableProductsAdmin";
 import NewProduct from "../NewProduct";
 import axios from "axios";
-import { Spinner } from "react-bootstrap";
 import { productsContext } from "../../contexts/productsContext";
 import { userContext } from "../../contexts/userContext";
 import { adminContext } from "../../contexts/adminContext";
+
 const Home = () => {
-  const { products, setProducts } = useContext(productsContext);
+  const { setProducts } = useContext(productsContext);
   const { userLogged } = useContext(userContext);
   const { isAdmin } = useContext(adminContext);
 
@@ -24,42 +24,24 @@ const Home = () => {
     })();
   }, [setProducts]);
 
-
-  if (products.length === 0) {
-    return (
-      <section className="productlist">
-        <Spinner animation="grow" variant="secondary" />
-      </section>
-    );
-  } else {
-    if(!userLogged){
-
-      return (
-        <section className="productlist">
-              <TableProducts />
-        </section>
-      );
-    }
-    if(userLogged && !isAdmin){
-      return (
-        <section className="productlist">
-              <TableProductsUser />
-        </section>
-      );
-    }
-    if(userLogged && isAdmin){
-      return (
-        <section className="productlist">
+  return (
+    <section className="productlist">
+      {userLogged && isAdmin ? (
+        <>
           <section className="productlist-new">
             <NewProduct />
           </section>
-        <section className="productlist-admin">
+          <section className="productlist-admin">
             <TableProductsAdmin />
-        </section>
-        </section>
-      );
-    }
-  }
+          </section>
+        </>
+      ) : userLogged && !isAdmin ? (
+        <TableProductsUser />
+      ) : (
+        <TableProducts />
+      )}
+    </section>
+  );
 };
 
 export default Home;

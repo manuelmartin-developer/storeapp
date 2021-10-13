@@ -1,23 +1,19 @@
-.productlist-admin{
-    
-    
-    & > table{
-        margin-top: 0;
-
-        
-    }
+.productlist-admin {
+  & > table {
+    margin-top: 0;
+  }
 }
-.table{
-    &-tbody{
-        &-tr{
-            &-td__button{
-                    text-align: center;
-                & > button{
-                    background-color: transparent;
-                    border: none;
-                    color: #66FF66;
-                }
-            }
+.table {
+  &-tbody {
+    &-tr {
+      &-td__button {
+        text-align: center;
+        & > button {
+          background-color: transparent;
+          border: none;
+          color: #66ff66;
         }
+      }
     }
+  }
 }

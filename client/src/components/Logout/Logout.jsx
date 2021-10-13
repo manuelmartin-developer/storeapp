@@ -1,12 +1,10 @@
 import React, { useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { Spinner } from "react-bootstrap";
 import { Toast } from "../../hooks/useToast";
 import axios from "axios";
 import { userContext } from "../../contexts/userContext";
 
 const Logout = () => {
-  
   const { setUserLogged } = useContext(userContext);
   const history = useHistory();
 
@@ -38,7 +36,6 @@ const Logout = () => {
             icon: "success",
             title: "You have been logout",
           });
-
         }
       } catch (error) {
         Toast.fire({
@@ -47,13 +44,8 @@ const Logout = () => {
         });
       }
     })();
-
   });
-  return (
-    <section className="productlist">
-      <Spinner animation="grow" variant="secondary" />
-    </section>
-  );
+  return <></>;
 };
 
 export default Logout;

@@ -10,11 +10,11 @@ import jwt_decode from "jwt-decode";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
-  const { setUserLogged } = useContext(userContext);
+  const { setUserLogged, setUserName } = useContext(userContext);
   const { setIsAdmin } = useContext(adminContext);
   const history = useHistory();
 
-  // Login Form
+  // Email Login
   const onSubmit = (data, e) => {
     const payload = { email: data.email, password: data.password };
 
@@ -37,13 +37,11 @@ const Login = () => {
         sessionStorage.setItem("token", token);
         const decode = jwt_decode(token);
 
+        setUserName(decode.email);
         setUserLogged(true);
 
-        if (decode.role === "admin") {
-          setIsAdmin(true);
-        } else {
-          setIsAdmin(false);
-        }
+        decode.role === "admin" ? setIsAdmin(true) : setIsAdmin(false);
+
         history.push("/");
 
         if (response.status === 200) {
@@ -70,8 +68,8 @@ const Login = () => {
   };
 
   // Login Oauth
-
   const [token] = useQueryParam("token", StringParam);
+
   useEffect(() => {
     if (token) {
       (async () => {
@@ -79,13 +77,12 @@ const Login = () => {
 
         sessionStorage.setItem("token", token);
         setUserLogged(true);
+        setUserName(decode.email);
 
-        if (decode.role === "admin") {
-          setIsAdmin(true);
-        } else {
-          setIsAdmin(false);
-        }
+        decode.role === "admin" ? setIsAdmin(true) : setIsAdmin(false);
+    
         history.push("/");
+
       })();
     }
   });

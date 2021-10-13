@@ -1,7 +1,6 @@
 // Imports
 import React from "react";
 import { Route, Switch } from 'react-router-dom';
-
 import Error from '../Error';
 import Home from '../Home';
 import Details from '../Details';
@@ -12,7 +11,6 @@ import Recover from '../Recover';
 import Reset from '../Reset';
 import Logout from "../Logout/Logout";
 import Update from "../Update/Update";
-
 
 const Main = () => {
   return (

@@ -18,6 +18,7 @@ const App = () => {
 
   const [products, setProducts] = useState([]);
   const [userLogged, setUserLogged] = useState(false);
+  const [userName, setUserName] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
 
 
@@ -27,11 +28,7 @@ const App = () => {
     if (token) {
       setUserLogged(true);
       const decode = jwt_decode(token);
-      if (decode.role === "admin") {
-        setIsAdmin(true);
-      } else {
-        setIsAdmin(false);
-      }
+      decode.role === "admin" ? setIsAdmin(true) : setIsAdmin(false);
     }
   }, []);
 
@@ -42,7 +39,9 @@ const App = () => {
   }
   const userData = {
     userLogged: userLogged,
-    setUserLogged: setUserLogged
+    userName: userName,
+    setUserLogged: setUserLogged,
+    setUserName: setUserName
   }
   const adminData = {
     isAdmin: isAdmin,
