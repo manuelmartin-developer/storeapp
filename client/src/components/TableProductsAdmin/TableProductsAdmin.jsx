@@ -40,7 +40,7 @@ const TableProductsAdmin = () => {
     (async () => {
       try {
         const response = await axios.post(
-          "http://localhost:9000/products/remove",
+          "https://helloworld-store.herokuapp.com//products/remove",
           payload,
           options
         );

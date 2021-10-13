@@ -23,7 +23,7 @@ const Logout = () => {
     (async () => {
       try {
         const response = await axios.post(
-          "http://localhost:9000/users/logout",
+          "https://helloworld-store.herokuapp.com//users/logout",
           payload,
           options
         );

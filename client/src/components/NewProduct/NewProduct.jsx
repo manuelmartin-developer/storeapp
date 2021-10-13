@@ -34,7 +34,7 @@ const NewProduct = () => {
       (async () => {
         try {
           const response = await axios.post(
-            "http://localhost:9000/products/add",
+            "https://helloworld-store.herokuapp.com//products/add",
             payload,
             options
           );

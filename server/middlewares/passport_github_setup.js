@@ -19,7 +19,7 @@ passport.use(new GitHubStrategy({
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
         scope: ['user:email'],
-        callbackURL: "http://localhost:9000/users/github/callback"
+        callbackURL: "https://helloworld-store.herokuapp.com//users/github/callback"
     },
     async (accessToken, refreshToken, profile, cb) => {
 

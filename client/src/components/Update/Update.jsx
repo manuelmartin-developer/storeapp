@@ -40,7 +40,7 @@ const Update = () => {
     (async () => {
       try {
         const response = await axios.post(
-          "http://localhost:9000/products/update",
+          "https://helloworld-store.herokuapp.com//products/update",
           payload,
           options
         );

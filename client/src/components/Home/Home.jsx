@@ -16,7 +16,7 @@ const Home = () => {
   useEffect(() => {
     (async () => {
       try {
-        const result = await axios.get("http://localhost:9000/products");
+        const result = await axios.get("https://helloworld-store.herokuapp.com//products");
         setProducts(result.data);
       } catch (error) {
         console.log(error);

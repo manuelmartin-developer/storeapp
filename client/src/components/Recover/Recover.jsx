@@ -21,7 +21,7 @@ const Recover = () => {
     (async () => {
       try {
         const response = await axios.post(
-          "http://localhost:9000/users/recover",
+          "https://helloworld-store.herokuapp.com//users/recover",
           payload,
           options
         );

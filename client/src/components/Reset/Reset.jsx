@@ -30,7 +30,7 @@ const Reset = () => {
       (async () => {
         try {
           const response = await axios.post(
-            "http://localhost:9000/users/reset",
+            "https://helloworld-store.herokuapp.com//users/reset",
             payload,
             options
           );
