@@ -1,10 +1,10 @@
 import React from "react";
-import { shallow } from "enzyme";
-import Error from "./Error";
+import { render, screen } from "@testing-library/react";
+import Error from ".";
 
 describe("Error", () => {
   test("matches snapshot", () => {
-    const wrapper = shallow(<Error />);
-    expect(wrapper).toMatchSnapshot();
+    render(<Error />);
+    expect(screen).toMatchSnapshot();
   });
 });

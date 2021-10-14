@@ -1,10 +1,10 @@
 import React from "react";
-import { shallow } from "enzyme";
-import Cart from "./Cart";
+import { render, screen } from "@testing-library/react";
+import Cart from ".";
 
 describe("Cart", () => {
   test("matches snapshot", () => {
-    const wrapper = shallow(<Cart />);
-    expect(wrapper).toMatchSnapshot();
+    render(<Cart />);
+    expect(screen).toMatchSnapshot();
   });
 });

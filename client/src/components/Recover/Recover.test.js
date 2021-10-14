@@ -1,10 +1,10 @@
 import React from "react";
-import { shallow } from "enzyme";
-import Recover from "./Recover";
+import { render, screen } from "@testing-library/react";
+import Recover from ".";
 
 describe("Recover", () => {
   test("matches snapshot", () => {
-    const wrapper = shallow(<Recover />);
-    expect(wrapper).toMatchSnapshot();
+    render(<Recover />);
+    expect(screen).toMatchSnapshot();
   });
 });

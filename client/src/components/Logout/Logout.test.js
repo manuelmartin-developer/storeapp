@@ -1,10 +1,23 @@
 import React from "react";
-import { shallow } from "enzyme";
-import Logout from "./Logout";
+import { render, screen } from "@testing-library/react";
+import Logout from ".";
+import { userContext } from "../../contexts/userContext";
+import { adminContext } from "../../contexts/adminContext";
+import { BrowserRouter } from "react-router-dom";
+
 
 describe("Logout", () => {
-  test("matches snapshot", () => {
-    const wrapper = shallow(<Logout />);
-    expect(wrapper).toMatchSnapshot();
+  test('Logout is visible', () => {
+ 
+    render(
+      <BrowserRouter>
+        <userContext.Provider value={false}>
+          <adminContext.Provider value={false}>
+            <Logout />
+          </adminContext.Provider>
+        </userContext.Provider>
+      </BrowserRouter>
+    );
+    expect(screen).toMatchSnapshot();
   });
 });

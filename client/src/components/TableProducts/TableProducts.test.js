@@ -1,10 +1,21 @@
 import React from "react";
-import { shallow } from "enzyme";
-import TableProducts from "./TableProducts";
+import { render, screen } from "@testing-library/react";
+import TableProducts from ".";
+import { productsContext } from "../../contexts/productsContext";
+import { products, data } from '../../setupTests';
+import { BrowserRouter } from 'react-router-dom';
+
+
 
 describe("TableProducts", () => {
   test("matches snapshot", () => {
-    const wrapper = shallow(<TableProducts />);
-    expect(wrapper).toMatchSnapshot();
+    render(
+      <BrowserRouter>
+      <productsContext.Provider value={{products: products,data:data}}>
+        <TableProducts />
+      </productsContext.Provider>
+      </BrowserRouter>
+    );
+    expect(screen).toMatchSnapshot();
   });
 });
