@@ -32,7 +32,8 @@ app.use('/products', api_products);
 app.use('/users', api_users);
 
 // Server
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
 })
 
+module.exports = {app, server};
